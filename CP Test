@@ -1,0 +1,76 @@
+#include <stdio.h>
+//create array
+void create(int d[],int s)
+{
+	int i;
+	for(i=0;i<s;i++)
+		scanf("%d",&d[i]);
+}
+//ascending order
+void asc(int d[],int s)
+{
+	int i,j,t;
+	for(i=0;i<s;i++)
+	{
+		for(j=0;j<s;j++)
+		{
+			if(d[j]>d[i])
+			{
+				t=d[i];
+				d[i]=d[j];
+				d[j]=t;
+			}
+		}
+	}
+
+}
+//merge sorted array
+int mer(int a[],int b[],int c[],int n,int m)
+{
+	int i=0,j=0,k=0;
+	while(i<n && j<m)
+	{
+		if(a[i]<b[j])
+		{
+			c[k]=a[i];
+			k++;
+			i++;
+		}
+		else
+		{
+			c[k]=b[j];
+			k++;
+			j++;
+		}
+	}
+	while(i<n)
+	{
+		 c[k]=a[i];
+                        k++;
+                        i++;
+	}
+	while(j<m)
+		 {
+                        c[k]=b[j];
+                        k++;
+                        j++;
+                }
+	return k;
+}
+void main()
+{
+	int i,a[20],b[20],c[40],n,m,k;
+	printf("input length of array 1 and 2 \n");
+	scanf("%d%d",&n,&m);
+	printf("input array 1 \n");
+	create(a,n);
+	printf("input array 2 \n");
+        create(b,m);
+	asc(a,n);
+	asc(b,m);
+	k=mer(a,b,c,n,m);
+	printf("Sorted array is :-\n");
+	for(i=0;i<k;i++)
+		printf("%d \t",c[i]);
+	printf("\n");
+}
